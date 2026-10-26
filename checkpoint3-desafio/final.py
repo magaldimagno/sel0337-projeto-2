@@ -3,12 +3,12 @@ from mfrc522 import SimpleMFRC522
 from time import sleep
 
 # ID  da tag cadastrada
-ID_AUTORIZADO = 123456789
+ID_AUTORIZADO = 771034125847
 
 # Definição dos pinos do LED RGB
-PINO_RED = 22 # Vermelho
-PINO_GREEN = 23 # Verde
-PINO_BLUE = 24 # Azul
+PINO_RED = 12 # Vermelho
+PINO_GREEN = 13 # Verde
+PINO_BLUE = 19 # Azul
 
 # Configuração do modo de numeração dos pinos e desabilitação de avisos
 GPIO.setmode(GPIO.BCM)
@@ -42,20 +42,20 @@ print("Sistema de acesso com PWM iniciado.")
 
 try:
     while True:
-    definir_cor_pwm(0, 0, 100) # Azul - Standby
+        definir_cor_pwm(0, 0, 100) # Azul - Standby
 
-    print("Aproxime a tag do leitor para leitura.")
-    id, texto = leitor.read() # Lê a id e o texto da tag
-    print("ID: {}\nTexto: {}".format(id, texto)) # Exibe as informações
+        print("Aproxime a tag do leitor para leitura.")
+        id, texto = leitor.read() # Lê a id e o texto da tag
+        print("ID: {}\nTexto: {}".format(id, texto)) # Exibe as informações
 
-    if id == ID_AUTORIZADO:
-        print("Acesso autorizado!")
-        definir_cor_pwm(0, 100, 0) # Verde
-    else:
-        print("Acesso negado!")
-        definir_cor_pwm(100, 0, 0) # Vermelho
+        if id == ID_AUTORIZADO:
+            print("Acesso autorizado!")
+            definir_cor_pwm(0, 100, 0) # Verde
+        else:
+            print("Acesso negado!")
+            definir_cor_pwm(100, 0, 0) # Vermelho
 
-    sleep(3) # Aguarda 3 segundos antes de resetar a cor e ler novamente
+        sleep(3) # Aguarda 3 segundos antes de resetar a cor e ler novamente
 
 except KeyboardInterrupt:
     # Para o PWM e limpa as configurações de GPIO ao encerrar

@@ -9,5 +9,6 @@ print("Aproxime a tag do leitor para leitura.")
 
 while True:
     id, texto = leitor.read() # lê a id e o texto da tag
+    print(type(texto))
     print("ID: {}\nTexto: {}".format(id, texto)) # exibe as informações
     sleep(3) # aguarda 3 segundos para nova leitura
